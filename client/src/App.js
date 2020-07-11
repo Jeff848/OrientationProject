@@ -8,10 +8,25 @@ class App extends React.Component {
     this.state = { apiResponse: "" };
   }
 
+  handleErrors(response) {
+    if (!response.ok) {
+      console.log("Hello")
+       throw Error(response.statusText);
+      	
+    }
+     return response;
+  }
+    
   callAPI() {
-      fetch("http://localhost:9000/test")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }));
+    fetch("http://localhost:9000/test")
+    .then(this.handleErrors)
+    .then(res => res.text())
+    .then(res => this.setState({ apiResponse: res }))
+    .catch(error => 
+      this.setState({
+        apiResponse : "API not responding: " + error
+      })
+    )
   }
 
   componentWillMount() {
