@@ -3,7 +3,7 @@
 
 # SETUP
 
-First do 
+First do git clone
 https://github.com/Jeff848/OrientationProject
 
 Make sure to have node.js installed
